@@ -1,6 +1,5 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
+// tailwind.config.js
+const baseConfig = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -17,4 +16,29 @@ const config: Config = {
   },
   plugins: [],
 };
-export default config;
+
+const extendedConfig = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      animation: {
+        shimmer: "shimmer 2s linear infinite",
+      },
+      keyframes: {
+        shimmer: {
+          from: {
+            backgroundPosition: "0 0",
+          },
+          to: {
+            backgroundPosition: "-200% 0",
+          },
+        },
+      },
+    },
+  },
+};
+
+module.exports = {
+  ...baseConfig,
+  ...extendedConfig,
+};
